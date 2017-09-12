@@ -1,2 +1,3 @@
 # PrayerBookServer
-An charitable project for an Android application
+A charitable project for an Android application
+

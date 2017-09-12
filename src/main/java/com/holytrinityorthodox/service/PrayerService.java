@@ -7,7 +7,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
-import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
@@ -75,16 +74,38 @@ public class PrayerService implements IPrayerService {
 		List<CelebrationContailer> celebrlList = new ArrayList<CelebrationContailer>();
 		//select main span with all text which is "first span with class normaltext" 
 		List<Node> celebrItems = doc.select("span.normaltext").first().childNodes();
-		List<String> celebrStrings = new ArrayList<String>();
-		String buildString = "";
+		CelebrationContailer celebItem = new CelebrationContailer("","");
 		for(Node blockCelebs:celebrItems) {
-			String tag = "string";
-			String str = blockCelebs.toString();
 			if (blockCelebs instanceof Element) {
-				tag = ((Element) blockCelebs).tag().toString();	
+				Element el = (Element)blockCelebs;
+				String text = celebItem.getText();
+				switch(el.tagName()) {
+				    case "img": 
+						break;
+				    case "a": 
+				    	text = text + " " + el.text();
+				    	celebItem.setText(text.trim());
+				    	String relHref = el.attr("href").toString(); 
+				    	celebItem.setLink(relHref);
+						break;
+					case "span":
+						text = text + " " + el.text();
+						celebItem.setText(text.trim());
+						break;
+					case "br": 
+						celebrlList.add(celebItem);
+						celebItem = new CelebrationContailer("","");
+						break;
+					default: 
+					    break;
+				}
 			}
-			System.out.println(tag + ": " +str);
+			else {
+				String text = celebItem.getText() + " " + blockCelebs.toString();
+				celebItem.setText(text.trim());
+			}
 		}	
+		model.setCelebration(celebrlList);
 		return model;
 	}
 	
