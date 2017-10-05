@@ -12,11 +12,14 @@ def count_visitors(filename):
         return
     # count visitors
     ipAdr = set()
+    accessAmount = 0
     with open(filename) as f:
         for line in f:
             index = line.index("-")
             ipAdr.add(line[0:index])
-    print ipAdr.__len__()
+            accessAmount += 1
+    print "Unique IP: " + str(ipAdr.__len__()) + ", common amout of requests: " + str(accessAmount)
+
 
 # example of insert parameters : --path=/path/file.log
 if __name__ == '__main__':
