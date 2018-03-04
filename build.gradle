@@ -28,6 +28,7 @@ repositories {
 dependencies {
 	compile group: 'jstl', name: 'jstl', version: '1.2'
 	compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '9.0.5'
+	compile group: 'org.jsoup', name: 'jsoup', version: '1.10.3'
 	compile('org.springframework.boot:spring-boot-starter-web')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

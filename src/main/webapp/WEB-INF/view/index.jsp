@@ -11,7 +11,7 @@
     <title>Prayer book service</title>
 </head>
 <body>
-  <h2>Version 0.1.0</h2>
+  <h2>Version 0.1.1</h2>
   <h3>Spring boot</h3>
 </body>
 </html>
