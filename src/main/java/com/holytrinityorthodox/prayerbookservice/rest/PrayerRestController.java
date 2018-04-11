@@ -1,6 +1,6 @@
 package com.holytrinityorthodox.prayerbookservice.rest;
 import com.holytrinityorthodox.prayerbookservice.model.PrayerModel;
-import com.holytrinityorthodox.prayerbookservice.service.IPrayerService;
+import com.holytrinityorthodox.prayerbookservice.service.PrayerService;
 import com.holytrinityorthodox.prayerbookservice.util.ILoggerProxy;
 import org.apache.logging.log4j.Level;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class PrayerRestController {
     ILoggerProxy logger;
 
     @Autowired
-    IPrayerService service;
+    PrayerService service;
 
     @Value("${base.lent}")
     private String defaultLent;
