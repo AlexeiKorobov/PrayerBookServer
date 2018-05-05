@@ -10,6 +10,12 @@ buildscript {
 	}
 }
 
+ext {
+	jstlVersion = '1.2'
+	tomcatEmbedJasperVersion = '9.0.5'
+	loggingJanino = '2.5.16'
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
@@ -26,9 +32,10 @@ repositories {
 
 
 dependencies {
-	compile group: 'jstl', name: 'jstl', version: '1.2'
-	compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '9.0.5'
+	compile group: 'jstl', name: 'jstl', version: jstlVersion
+	compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: tomcatEmbedJasperVersion
 	compile group: 'org.jsoup', name: 'jsoup', version: '1.10.3'
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile group: 'org.codehaus.janino', name: 'janino', version: loggingJanino
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
